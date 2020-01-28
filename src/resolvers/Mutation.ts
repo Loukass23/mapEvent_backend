@@ -83,7 +83,6 @@ export async function login(parent, args, context, info) {
 
   // sign token
   const token: string = jwt.sign(payload, secret, options);
-
   return token
 }
 
