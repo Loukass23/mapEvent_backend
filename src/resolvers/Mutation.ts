@@ -1,5 +1,5 @@
 import { AuthenticationError } from 'apollo-server-express';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 
@@ -20,7 +20,7 @@ const secret: jwt.Secret = process.env.JWT_SECRET;
 // *************** signup mutation ***************
 
 export async function signup(parent, args, context, info) {
-  
+
   // check if user's email already exists in db
   const userExists = await User.findOne({ email: args.email });
   if (userExists) {
@@ -47,7 +47,7 @@ export async function signup(parent, args, context, info) {
   const payload = {
     userId: newUser._id,
   };
-  const options: jwt.SignOptions = {expiresIn: "2 days"};
+  const options: jwt.SignOptions = { expiresIn: "2 days" };
 
   // sign token
   const token: string = jwt.sign(payload, secret, options);
@@ -69,7 +69,7 @@ export async function login(parent, args, context, info) {
   }
 
   const passwordIsCorrect = await bcrypt.compare(args.password, user.password);
-  
+
   // throw error if password is incorrect
   if (!passwordIsCorrect) {
     throw new AuthenticationError('Password incorrect.')
@@ -79,7 +79,7 @@ export async function login(parent, args, context, info) {
   const payload = {
     userId: user._id,
   };
-  const options: jwt.SignOptions = {expiresIn: "2 days"};
+  const options: jwt.SignOptions = { expiresIn: "2 days" };
 
   // sign token
   const token: string = jwt.sign(payload, secret, options);
@@ -128,7 +128,7 @@ export async function addEvent(parent, args, context, info) {
 
   // store new event id in user's events array
   user.events.push(newEvent._id);
-  
+
   // save user and event to db
   await newEvent.save();
   await user.save();
@@ -148,14 +148,14 @@ export async function addComment(parent, { message, eventId }, context, info) {
   if (!user) {
     throw new AuthenticationError('You are not logged in or user does not exist.');
   }
-  
+
   const now: Date = new Date();
 
   // create new comment object
   const newComment: IComment = {
     user: context.user.userId,
     message: message,
-    postedOn: now,    
+    postedOn: now,
   }
 
   // find corresponding event in db
@@ -168,7 +168,7 @@ export async function addComment(parent, { message, eventId }, context, info) {
 
   // add new comment to event's comment array
   event.comments.push(newComment);
-  
+
   // save updated event to db
   await event.save();
 

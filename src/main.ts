@@ -1,5 +1,5 @@
 // treat file as module to avoid "cannot redeclare block-scoped variable" error
-export {};
+export { };
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -53,4 +53,4 @@ app.listen(port, () => {
 // connecting to db
 mongoose.connect(db, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
   .then(() => console.log("Connection to Mongo DB established"))
-  .catch(err => console.log(err));
+  .catch(err => console.log('err:', err));
