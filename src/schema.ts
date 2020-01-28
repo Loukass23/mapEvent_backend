@@ -29,6 +29,7 @@ const typeDefs = gql`
       title: String!,
       body: String,
       img: String,
+       type: String!,
     ): Event!
     addComment(message: String!, eventId: ID!): Comment!
   }
@@ -36,7 +37,9 @@ const typeDefs = gql`
   type Event {
     id: ID!
     geometry: GeoJSONPoint!
-    category: String
+    category: String!
+    properties: String!,
+  type: String!,
     title: String!
     body: String
     img: String

@@ -20,6 +20,10 @@ const eventSchema: Schema = new Schema({
     type: String,
     required: true,
   },
+  type: {
+    type: String,
+    required: true,
+  },
   body: String,
   img: String,
   createdBy: {

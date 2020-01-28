@@ -120,6 +120,7 @@ export async function addEvent(parent, args, context, info) {
     title: args.title,
     body: args.body,
     img: args.img,
+    type: args.type,
     // user instead of user._id to enable requesting createdBy in GraphQL on addEvent
     createdBy: user,
     creationDate: now,
