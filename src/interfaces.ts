@@ -23,6 +23,7 @@ export interface IEvent {
   // no id field because of conflict with Document's id field
   geometry: GeoJSON.Point;
   category?: string;
+  type?: String;
   title: string;
   body?: string;
   img?: string;
@@ -32,5 +33,5 @@ export interface IEvent {
 };
 
 // extend IEvent & IUser interfaces for using them in DB
-export interface IEventDocument extends IEvent, Document {};
-export interface IUserDocument extends IUser, Document {};
+export interface IEventDocument extends IEvent, Document { };
+export interface IUserDocument extends IUser, Document { };
