@@ -58,8 +58,8 @@ const Event: Model<IEventDocument> = mongoose.model('event', eventSchema);
 // // sends createIndex command to db. not necassary as soon as index exists in db
 // // commented out because not recommended for production (performance issue)
 // // see https://mongoosejs.com/docs/api.html#model_Model.ensureIndexes
-// Event.on('index', function (err) {
-//   if (err) console.error(err);
-// })
+Event.on('index', function (err) {
+  if (err) console.error(err);
+})
 
 export default Event;
