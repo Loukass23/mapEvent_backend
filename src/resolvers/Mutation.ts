@@ -99,8 +99,8 @@ export async function addEvent(parent, args, context, info) {
     throw new AuthenticationError('You are not logged in or user does not exist.');
   }
 
-  const long = args.coordinates[0];
-  const lat = args.coordinates[1];
+  const long = args.coordinates[1];
+  const lat = args.coordinates[0];
 
   // only allow valid coordinates
   if (long < -180 || long > 180 || lat < -90 || lat > 90) {
