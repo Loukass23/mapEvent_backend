@@ -38,6 +38,7 @@ export async function signup(parent, args, context, info) {
     middleName: args.middleName,
     lastName: args.lastName,
     password: password,
+    token: ''
   })
 
   // save new user to db
@@ -61,7 +62,7 @@ export async function signup(parent, args, context, info) {
 export async function login(parent, args, context, info) {
 
   // find user in db
-  const user = await User.findOne({ email: args.email });
+  let user = await User.findOne({ email: args.email });
 
   // throw error if user does not exist
   if (!user) {
@@ -83,7 +84,9 @@ export async function login(parent, args, context, info) {
 
   // sign token
   const token: string = jwt.sign(payload, secret, options);
-  return token
+  user.token = token
+  console.log('user', user)
+  return user
 }
 
 

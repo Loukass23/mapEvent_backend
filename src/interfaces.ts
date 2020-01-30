@@ -16,6 +16,7 @@ export interface IUser {
   middleName?: string;
   lastName: string;
   password?: string;
+  token?: string;
   events: IEvent[] | IEventDocument[];
 };
 

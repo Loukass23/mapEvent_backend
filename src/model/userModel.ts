@@ -26,6 +26,10 @@ const userSchema: Schema = new Schema({
     type: String,
     required: true,
   },
+  token: {
+    type: String,
+    required: false,
+  },
   events: [{
     type: Schema.Types.ObjectId,
     ref: 'event',

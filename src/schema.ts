@@ -22,7 +22,7 @@ const typeDefs = gql`
       lastName: String!,
       password: String!,
     ): String!
-    login(email: String!, password: String!): String!
+    login(email: String!, password: String!): User!
     addEvent(
       coordinates: Coordinates,
       category: String, 
@@ -56,6 +56,8 @@ const typeDefs = gql`
     middleName: String
     lastName: String!
     events: [Event!]!
+    token: String
+
   }
 
   type Comment {
@@ -69,6 +71,7 @@ const typeDefs = gql`
     type: GeoJSONPointType
     coordinates: Coordinates!
   }
+
 
   input GeoJSONPointInput {
     type: GeoJSONPointType
