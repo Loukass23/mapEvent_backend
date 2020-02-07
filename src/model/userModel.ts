@@ -30,6 +30,13 @@ const userSchema: Schema = new Schema({
     type: String,
     required: false,
   },
+  avatar: {
+    type: String,
+    required: false,
+    default:
+      'https://minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg'
+
+  },
   events: [{
     type: Schema.Types.ObjectId,
     ref: 'event',

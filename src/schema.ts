@@ -57,7 +57,7 @@ const typeDefs = gql`
     lastName: String!
     events: [Event!]!
     token: String
-
+    avatar: String
   }
 
   type Comment {
